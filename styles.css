@@ -1,0 +1,19 @@
+.sketchContainer {
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid black;
+    
+    width: 640px;
+    height: 640px;
+}
+
+.divRow {
+    display: flex;
+    flex: 1 1 0;
+}
+
+.divBox {
+    flex: 1 1 0;
+    border: 1px solid black;
+}
