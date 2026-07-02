@@ -1,11 +1,51 @@
 let isMouseDown = false;
 let inkColor = "#dc143c";
+let brushSize = 1;
+let newSize = 16;
 
 const changeColor = (event) => {
-    // event.preventDefault()
-    // if(isMouseDown || event.type === "mousedown") {
-    //     event.target.style.backgroundColor = inkColor;
-    // }
+    console.log("Triggered by event type:", event.type);
+    event.preventDefault();
+    if (!(isMouseDown || event.type === "mousedown")) {
+        return 
+    }
+    if (brushSize === 1) {
+         event.target.style.backgroundColor = inkColor;
+    } else {
+        // Split the id to get its row and column and asign them to const
+        const targetCell = (event.target.id).split("-");
+        const targetCellRow = parseInt(targetCell[1]);
+        const targetCellCol = parseInt(targetCell[2]);
+
+        let targets = [];
+        for (let rowOffset = 0; rowOffset < brushSize; rowOffset++) {
+            for (let colOffset = 0; colOffset < brushSize; colOffset++) {
+
+                if (!(((targetCellRow - rowOffset) < 0) || ((targetCellCol - colOffset) < 0))) {
+                    targets.push(`divBox-${targetCellRow - rowOffset}-${targetCellCol - colOffset}`);
+                }
+                if (!(((targetCellRow - rowOffset) < 0) || ((targetCellCol + colOffset) > (newSize || 16)))) {
+                    targets.push(`divBox-${targetCellRow - rowOffset}-${targetCellCol + colOffset}`);
+                }
+                if (!(((targetCellRow + rowOffset) > (newSize || 16)) || ((targetCellCol - colOffset) < 0))) {
+                    targets.push(`divBox-${targetCellRow + rowOffset}-${targetCellCol - colOffset}`);
+                }
+                if (!(((targetCellRow + rowOffset) > (newSize || 16)) || ((targetCellCol + colOffset) > (newSize || 16)))) {
+                    targets.push(`divBox-${targetCellRow + rowOffset}-${targetCellCol + colOffset}`);
+                }
+                
+            }
+        }
+        targets = [... new Set (targets)];
+        targets.forEach(id => {
+            const cell = document.getElementById(id);
+
+            if (cell) {
+                cell.style.backgroundColor = inkColor;
+            }
+        })
+    }
+
 }
 const eraser = document.querySelector("#eraser");
 const clear = document.querySelector("#clear");
@@ -34,6 +74,8 @@ colorPicker.on('color:change', function(color) {
 
 function createGrid(number) {
     sketchGrid.innerHTML = "";
+    gridSizeInput.value = "";
+    number = Math.min(100, number);
     for (let row = 0; row < number; row++) {
         const divRow = document.createElement("div"); divRow.classList.add("divRow");
         for (let box = 0; box < number; box++) {
@@ -50,7 +92,7 @@ function createGrid(number) {
     }
 }
 
-createGrid(parseInt(gridSize.value) || 16);
+createGrid(16);
 
 // Event Listener
 
@@ -64,6 +106,6 @@ clear.addEventListener("click", () => {
     })
 });
 upgradeGridBtn.addEventListener("click", () => {
-    const newSize = parseInt(gridSizeInput.value);
+    newSize = parseInt(gridSizeInput.value);
     createGrid(newSize);
 })
