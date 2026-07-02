@@ -1,11 +1,71 @@
-.sketchContainer {
+* {
+    box-sizing: border-box;
+    margin: 0;
+
+}
+
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  background-color: #f4f4f9; 
+  color: #333333;
+  background-color: #F4EBE1;        
+}
+.header {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    font-size: 24px;
+    font-size: 2em;
+    font-weight: bold;
+    padding: 15px;
+
+    background-color: #e1d1be;
+
+}
+
+.sketchWrapper {
+    display: flex;
+
+    align-items: stretch;
+    justify-content: center;
+    gap: 48px;
+    margin: 0 auto;
+    padding-top: 80px;
+}
+
+.toolBox {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    flex: 0 0 80px;
+    gap: 12px;
 
-    border: 1px solid black;
+    border: 3px solid black;
+    border-radius: 4px;
+}
+
+.toolBoxContent {
+    display: flex;
+    flex-direction: column;
+    padding: 0 24px;
+    gap: 12px;
+}
+
+.sketchGrid {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
     
-    width: 640px;
-    height: 640px;
+    width: min(60vw, 70vh);
+    height: min(60vw, 70vh);
+
+    padding: 8px;
+    flex-direction: 0 0 auto;
+
+    background-color: white;
 }
 
 .divRow {
@@ -17,3 +77,57 @@
     flex: 1 1 0;
     border: 1px solid black;
 }
+
+#pickerContainer {
+    box-shadow: 2px 1px 1px rgb(111, 111, 111);
+    padding: 8px;
+
+    font-weight: bold;
+    text-align: center;
+}
+
+#toolBoxHeader {
+    display: block;
+    align-self: stretch;
+    text-align: center;
+
+    margin: 0;
+    padding: 8px;
+    background-color: RGB(150, 76, 29);
+}
+
+#eraser, #clear, #upgradeGridBtn{
+    text-align: center;
+    align-self: center;
+    cursor: pointer;
+
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 50%;
+
+
+    background-color: rgb(6, 158, 204);
+    &:hover {
+        background-color: rgb(88, 196, 255);
+    }
+}
+
+
+
+#gridWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+#gridSizeInput {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 20%;
+    
+}
+ #gridInputBox {
+    display: flex;
+    justify-content: space-around;
+    gap: 8px;
+
+ }

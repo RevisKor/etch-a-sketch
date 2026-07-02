@@ -6,10 +6,25 @@
     <title>Etch-a-Sketch</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
-</head>
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
 <body>
-    <div class="sketchContainer">
-
+    <div class="header">Etch-a-Sketch</div>
+    <div class="sketchWrapper">
+        <div class="toolBox">
+            <h2 id="toolBoxHeader">Tools</h2>
+            <div class="toolBoxContent">
+                <div id="pickerContainer">Pick a color</div>
+                <div id="eraser">Eraser</div>
+                <div id="clear">Clear All</div>
+            </div>
+        </div>
+        <div id="gridWrapper">
+            <div id="gridInputBox">
+                <div id="gridSize">➡️Enter the size: <input type="text" id="gridSizeInput"></input></div>
+                <div id="upgradeGridBtn">Upgrade Grid</div>
+            </div>
+            <div class="sketchGrid"></div>
+        </div>
     </div>
 </body>
 </html>
